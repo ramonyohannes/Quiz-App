@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import './question.dart';
 import './answer.dart';
 import './result.dart';
+import './quiz.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,27 +17,97 @@ class _HomePageState extends State<HomePage> {
   final _questionList = [
     {
       "questionText": "What is your favorite Food",
-      "answer": ["Doro", "Tbs", "Kitfo", "Kkl"],
+      "answer": [
+        {
+          "answerText": "Doro",
+          "Score": 10,
+        },
+        {
+          "answerText": "Tbs",
+          "Score": 5,
+        },
+        {
+          "answerText": "Kitfo",
+          "Score": 3,
+        },
+        {
+          "answerText": "Kkl",
+          "Score": 1,
+        },
+      ],
     },
     {
       "questionText": "What is your favorite Color",
-      "answer": ["Black", "Red", "Green", "Grey"],
+      "answer": [
+        {
+          "answerText": "Black",
+          "Score": 10,
+        },
+        {
+          "answerText": "Red",
+          "Score": 5,
+        },
+        {
+          "answerText": "Green",
+          "Score": 3,
+        },
+        {
+          "answerText": "Grey",
+          "Score": 1,
+        },
+      ],
     },
     {
       "questionText": "What is your favorite Drink",
-      "answer": ["Soda", "Beer", "Draft", "Redbull"],
+      "answer": [
+        {
+          "answerText": "Soda",
+          "Score": 10,
+        },
+        {
+          "answerText": "Beer",
+          "Score": 5,
+        },
+        {
+          "answerText": "Draft",
+          "Score": 3,
+        },
+        {
+          "answerText": "Redbull",
+          "Score": 1,
+        },
+      ],
     },
     {
       "questionText": "What is your favorite Pet",
-      "answer": ["Dog", "Cat", "Parrot", "Rabbit"],
+      "answer": [
+        {
+          "answerText": "Dog",
+          "Score": 10,
+        },
+        {
+          "answerText": "Cat",
+          "Score": 5,
+        },
+        {
+          "answerText": "Parrot",
+          "Score": 3,
+        },
+        {
+          "answerText": "Rabbit",
+          "Score": 1,
+        },
+      ],
     },
   ];
 
   int _questionIndex = 0;
+  int _totalScore = 0;
 
-  void _changeQuestion() {
+  void _changeQuestion(int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
+      _totalScore = _totalScore + score;
     });
   }
 
@@ -48,6 +119,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(_totalScore);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -72,10 +144,11 @@ class _HomePageState extends State<HomePage> {
                 QuestionText(
                   _questionList[_questionIndex]["questionText"].toString(),
                 ),
-                ...(_questionList[_questionIndex]["answer"] as List<String>)
-                    .map((answer) {
-                  return Answer(answer, _changeQuestion);
-                }).toList()
+                Quiz(
+                  (_questionIndex),
+                  _questionList,
+                  _changeQuestion,
+                )
               ],
             ),
     );

@@ -32,7 +32,7 @@ class Answer extends StatelessWidget {
         },
         child: Text(
           answerText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

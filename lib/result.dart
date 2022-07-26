@@ -13,7 +13,7 @@ class Result extends StatelessWidget {
         children: [
           const SizedBox(height: 30),
           const Text(
-            "Very Succesful",
+            "Very Successful",
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class Result extends StatelessWidget {
             onPressed: () {
               selectHandler();
             },
-            child: Text(
+            child: const Text(
               "Restart Quiz",
               style: TextStyle(
                 color: Colors.white,
