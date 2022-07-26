@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
   //const Answer({Key? key}) : super(key: key);
   final String answerText;
-  Answer(this.answerText);
+  final Function selectHandler;
+  Answer(
+    this.answerText,
+    this.selectHandler,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,7 @@ class Answer extends StatelessWidget {
         color: Colors.green,
         onPressed: () {
           print("clicked");
+          selectHandler();
         },
         child: Text(
           answerText,
