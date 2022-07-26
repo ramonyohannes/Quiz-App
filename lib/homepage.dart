@@ -1,7 +1,41 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+import './question.dart';
+import './answer.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   //const HomePage({Key? key}) : super(key: key);
+  var _questionList = [
+    {
+      "questionText": "What is your favorite food",
+      "answer": ["Doro", "Tbs", "Kitfo", "KKL"],
+    },
+    {
+      "questionText": "What is your favorite color",
+      "answer": ["black", "red", "green", "grey"],
+    },
+    {
+      "questionText": "What is your favorite drink",
+      "answer": ["soda", "beer", "draft", "redbull"],
+    },
+    {
+      "questionText": "What is your favorite pet",
+      "answer": ["dog", "cat", "parrot", "rabbit"],
+    },
+  ];
+
+  // [
+  //   "What is your favorite food",
+  //   "What is your favorite Drink",
+  //   "What is yout favortie Color",
+  // ];
+
+  int _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -21,23 +55,20 @@ class HomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.amber,
-            ),
+          const SizedBox(
+            height: 20,
           ),
-          Expanded(
-            child: Container(
-              color: Colors.red,
-            ),
+          QuestionText(
+            _questionList[_questionIndex]["questionText"].toString(),
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Colors.green,
-            ),
-          ),
+
+          ...(_questionList[_questionIndex]["answer"] as List<String>)
+              .map((answer) {
+            return Answer(answer);
+          }).toList()
+          // Answer(),
+          // Answer(),
+          // Answer(),
         ],
       ),
     );
