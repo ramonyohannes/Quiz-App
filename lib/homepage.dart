@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
-import './answer.dart';
 import './result.dart';
 import './quiz.dart';
 
@@ -13,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //const HomePage({Key? key}) : super(key: key);
+  //Questions with answers and scores
   final _questionList = [
     {
       "questionText": "What is your favorite Food",
@@ -104,6 +103,7 @@ class _HomePageState extends State<HomePage> {
   int _questionIndex = 0;
   int _totalScore = 0;
 
+  //changes question when answer is clicked
   void _changeQuestion(int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -111,7 +111,8 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void restartQuiz() {
+  //restart's quiz when questions end
+  void _restartQuiz() {
     setState(() {
       _questionIndex = 0;
       _totalScore = 0;
@@ -120,7 +121,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(_totalScore);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -136,17 +136,17 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white10,
       ),
       body: _questionIndex >= _questionList.length
-          ? Result(restartQuiz, _totalScore)
+          ? Result(_restartQuiz, _totalScore)
           : Column(
               children: [
                 const SizedBox(
                   height: 20,
                 ),
-                QuestionText(
+                Question(
                   _questionList[_questionIndex]["questionText"].toString(),
                 ),
                 Quiz(
-                  (_questionIndex),
+                  _questionIndex,
                   _questionList,
                   _changeQuestion,
                 )

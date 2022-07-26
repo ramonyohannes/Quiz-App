@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class QuestionText extends StatelessWidget {
+class Question extends StatelessWidget {
   //const Questions({Key? key}) : super(key: key);
   final String text;
-  QuestionText(this.text);
+  Question(this.text);
 
   @override
   Widget build(BuildContext context) {
+    //displays Question title
     return Container(
       margin: const EdgeInsets.all(10),
       child: Text(

@@ -14,11 +14,6 @@ class Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
-      ),
       margin: const EdgeInsets.only(
         left: 10,
         right: 10,
@@ -27,7 +22,6 @@ class Answer extends StatelessWidget {
       child: RaisedButton(
         color: Colors.green,
         onPressed: () {
-          print("clicked");
           selectHandler();
         },
         child: Text(
