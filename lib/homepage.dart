@@ -114,6 +114,7 @@ class _HomePageState extends State<HomePage> {
   void restartQuiz() {
     setState(() {
       _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white10,
       ),
       body: _questionIndex >= _questionList.length
-          ? Result(restartQuiz)
+          ? Result(restartQuiz, _totalScore)
           : Column(
               children: [
                 const SizedBox(

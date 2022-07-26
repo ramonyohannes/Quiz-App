@@ -4,7 +4,22 @@ class Result extends StatelessWidget {
   //const Result({Key? key}) : super(key: key);
 
   final Function selectHandler;
-  Result(this.selectHandler);
+  final int totalScore;
+  Result(this.selectHandler, this.totalScore);
+
+  String get resultPhase {
+    var resultText = "You did it";
+    if (totalScore >= 30) {
+      resultText = "Great Job";
+    } else if (totalScore < 30 && totalScore >= 20) {
+      resultText = "Very nice";
+    } else if (totalScore < 20 && totalScore >= 10) {
+      resultText = "Not Bad";
+    } else {
+      resultText = "Its not good";
+    }
+    return resultText;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +27,9 @@ class Result extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 30),
-          const Text(
-            "Very Successful",
-            style: TextStyle(
+          Text(
+            resultPhase,
+            style: const TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.bold,
               color: Colors.green,
